@@ -28,3 +28,4 @@ portfolio/
 
 1. **Całkowita separacja testów**: Katalog `src/` zawiera wyłącznie czysty kod źródłowy produkcyjny. Wszystkie pliki testowe (`*.test.tsx`, `*.test.ts`) oraz plik konfiguracyjny `setup.ts` znajdują się w katalogu `tests/`.
 2. **Krótkie i dedykowane moduły**: Komponenty w `src/components/` są dzielone tematycznie, posiadają przejrzyste nazwy i odrębne pliki stylów/typów w razie potrzeby.
+3. **Zewnętrzne pliki CSS**: Kod stylizacyjny nie może być mieszany z kodem JSX/TSX. Wszystkie reguły CSS muszą znajdować się w plikach `.css` (np. `src/index.css` lub dedykowanych plikach CSS w `src/components/`), bez stosowania obiektów `style={{ ... }}` w komponentach.
