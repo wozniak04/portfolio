@@ -3,8 +3,9 @@ import { describe, it, expect } from 'vitest';
 import App from '../../src/App';
 
 describe('App component', () => {
-  it('renders hello world text', () => {
+  it('renders brand name and navigation items', () => {
     render(<App />);
-    expect(screen.getByText(/hello world/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/wozniak04/i).length).toBeGreaterThan(0);
+    expect(screen.getByText(/Full-Stack Developer & AI Pipeline Engineer/i)).toBeInTheDocument();
   });
 });
