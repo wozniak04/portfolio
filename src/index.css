@@ -437,6 +437,30 @@ button {
   font-weight: 500;
 }
 
+/* Status Banner (W trakcie przygotowania) */
+.status-banner {
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  border-radius: var(--radius-lg);
+  padding: 24px 32px;
+  margin-bottom: 36px;
+}
+
+.status-banner-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.status-banner-text {
+  font-size: 1.02rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin: 0;
+}
+
 /* Skills Section */
 .skills-grid {
   display: grid;

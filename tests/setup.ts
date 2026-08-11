@@ -33,4 +33,6 @@ vi.mock('lucide-react', () => ({
   Terminal: makeIcon('Terminal'),
   Layers: makeIcon('Layers'),
   Trophy: makeIcon('Trophy'),
+  Construction: makeIcon('Construction'),
+  Award: makeIcon('Award'),
 }));

@@ -28,7 +28,7 @@ jobs:
           npm run lint
           npm run format:check
 
-      - name: Run Tests & Coverage
+      - name: Run Tests & Verify >95% Code Coverage Threshold
         run: npm run test:coverage
 
       - name: Type Check & Build

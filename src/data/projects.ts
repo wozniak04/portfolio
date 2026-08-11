@@ -12,6 +12,7 @@ export const PROJECTS_DATA: Project[] = [
     featured: true,
     awardBadge: 'Wyróżniony Projekt Full-Stack',
     githubUrl: 'https://github.com/wozniak04/e-learning-platform',
+    liveUrl: 'https://e-learning-platform.example.com',
     techStack: [
       'React 19',
       'TypeScript',
@@ -110,24 +111,6 @@ export const PROJECTS_DATA: Project[] = [
       'Rekomendacje podzespołów z wykorzystaniem sztucznej inteligencji.',
     ],
     date: '2023',
-  },
-  {
-    id: 'applikacja-finansowa',
-    title: 'Financial Data Analytics',
-    shortDescription:
-      'Narzędzie analityczne w Jupyter Notebook do analizy trendów finansowych, portfela oraz wskaźników giełdowych.',
-    fullDescription:
-      'Projekt skierowany na analizę danych finansowych, modelowanie prognoz oraz wizualizację statystyk inwestycyjnych przy użyciu bibliotek Python (Pandas, Matplotlib, Seaborn).',
-    category: 'Data / Tools',
-    featured: false,
-    githubUrl: 'https://github.com/wozniak04/Applikacja-finansowa',
-    techStack: ['Python', 'Jupyter Notebook', 'Pandas', 'Matplotlib'],
-    features: [
-      'Wizualizacja wykresów cenowych i wskaźników finansowych.',
-      'Analiza ryzyka i zwrotu z portfela inwestycyjnego.',
-      'Automatyczne generowanie raportów podsumowujących.',
-    ],
-    date: '2023 - 2026',
   },
   {
     id: 'metroloty',

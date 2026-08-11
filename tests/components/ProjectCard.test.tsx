@@ -18,6 +18,15 @@ const mockProject: Project = {
   date: '2026',
 };
 
+const mockProjectWithLiveUrl: Project = {
+  ...mockProject,
+  id: 'test-live',
+  title: 'Test Live Project',
+  featured: false,
+  awardBadge: undefined,
+  liveUrl: 'https://example.com/live',
+};
+
 describe('ProjectCard Component', () => {
   it('renders project title, category, award badge, and tech stack tags', () => {
     render(
@@ -33,14 +42,17 @@ describe('ProjectCard Component', () => {
     expect(screen.getByText('TypeScript')).toBeInTheDocument();
   });
 
-  it('renders link to Case Study route', () => {
+  it('renders link to Case Study route and external live URL when provided', () => {
     render(
       <MemoryRouter>
-        <ProjectCard project={mockProject} />
+        <ProjectCard project={mockProjectWithLiveUrl} />
       </MemoryRouter>
     );
 
     const caseStudyLink = screen.getByRole('link', { name: /Case Study/i });
-    expect(caseStudyLink).toHaveAttribute('href', '/projects/test-project');
+    expect(caseStudyLink).toHaveAttribute('href', '/projects/test-live');
+
+    const liveLink = screen.getByRole('link', { name: /Live demo for Test Live Project/i });
+    expect(liveLink).toHaveAttribute('href', 'https://example.com/live');
   });
 });

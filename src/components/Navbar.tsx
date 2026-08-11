@@ -31,14 +31,20 @@ export function Navbar() {
               </Link>
             </li>
             <li>
-              <a href="#skills" className="nav-link">
+              <Link
+                to="/skills"
+                className={`nav-link ${location.pathname === '/skills' ? 'active' : ''}`}
+              >
                 <Sparkles size={16} className="inline-icon" /> Umiejętności
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#contact" className="nav-link">
+              <Link
+                to="/contact"
+                className={`nav-link ${location.pathname === '/contact' ? 'active' : ''}`}
+              >
                 <Mail size={16} className="inline-icon" /> Kontakt
-              </a>
+              </Link>
             </li>
             <li>
               <a
