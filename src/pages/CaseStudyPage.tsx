@@ -2,20 +2,24 @@ import { useParams, Link } from 'react-router-dom';
 import { PROJECTS_DATA } from '../data/projects';
 import { ArrowLeft, ExternalLink, CheckCircle2, Layers, Cpu, Award } from 'lucide-react';
 import { GithubIcon } from '../components/SocialIcons';
+import { useLanguage } from '../context/LanguageContext';
+import { TRANSLATIONS } from '../data/translations';
 
 export function CaseStudyPage() {
   const { id } = useParams<{ id: string }>();
   const project = PROJECTS_DATA.find((p) => p.id === id);
+  const { language } = useLanguage();
+  const t = TRANSLATIONS[language].caseStudy;
 
   if (!project) {
     return (
       <div className="case-study-container">
         <Link to="/projects" className="back-link">
-          <ArrowLeft size={18} /> Powrót do projektów
+          <ArrowLeft size={18} /> {t.backBtn}
         </Link>
         <div className="about-card">
-          <h2>Projekt nie został znaleziony</h2>
-          <p className="about-text">Przepraszamy, szukany projekt nie istnieje w bazie.</p>
+          <h2>{t.notFoundTitle}</h2>
+          <p className="about-text">{t.notFoundDesc}</p>
         </div>
       </div>
     );
@@ -24,7 +28,7 @@ export function CaseStudyPage() {
   return (
     <div className="case-study-container">
       <Link to="/projects" className="back-link">
-        <ArrowLeft size={18} /> Powrót do projektów & osiągnięć
+        <ArrowLeft size={18} /> {t.backBtn}
       </Link>
 
       <header className="case-study-header">
@@ -40,19 +44,18 @@ export function CaseStudyPage() {
           <div className="project-links">
             <a href={project.githubUrl} target="_blank" rel="noreferrer" className="btn-primary">
               <GithubIcon size={18} />
-              <span>Kod na GitHub</span>
+              <span>{t.codeBtn}</span>
             </a>
             {project.liveUrl && (
               <a href={project.liveUrl} target="_blank" rel="noreferrer" className="btn-secondary">
                 <ExternalLink size={18} />
-                <span>Live Demo</span>
+                <span>{t.demoBtn}</span>
               </a>
             )}
           </div>
         </div>
       </header>
 
-      {/* Metrics Row */}
       {project.metrics && (
         <div className="metrics-row">
           {project.metrics.map((m) => (
@@ -64,22 +67,20 @@ export function CaseStudyPage() {
         </div>
       )}
 
-      {/* Architecture Overview */}
       {project.architectureOverview && (
         <section className="case-study-section">
           <h2 className="case-study-section-title">
             <Layers className="category-icon" size={22} />
-            Architektura & Rozwiązanie Techniczne
+            {t.archTitle}
           </h2>
           <p className="about-text">{project.architectureOverview}</p>
         </section>
       )}
 
-      {/* Key Features */}
       <section className="case-study-section">
         <h2 className="case-study-section-title">
           <CheckCircle2 className="category-icon" size={22} />
-          Główne Funkcjonalności & Możliwości
+          {t.featTitle}
         </h2>
         <ul className="features-list">
           {project.features.map((feature, idx) => (
@@ -91,11 +92,10 @@ export function CaseStudyPage() {
         </ul>
       </section>
 
-      {/* Tech Stack */}
       <section className="case-study-section">
         <h2 className="case-study-section-title">
           <Cpu className="category-icon" size={22} />
-          Zastosowany Stack Technologiczny
+          {t.stackTitle}
         </h2>
         <div className="tech-stack-row">
           {project.techStack.map((tech) => (
@@ -106,12 +106,11 @@ export function CaseStudyPage() {
         </div>
       </section>
 
-      {/* Highlights */}
       {project.highlights && (
         <section className="case-study-section">
           <h2 className="case-study-section-title">
             <Award className="category-icon" size={22} />
-            Wyróżniki Inżynieryjne
+            {t.highlightsTitle}
           </h2>
           <ul className="features-list">
             {project.highlights.map((h, idx) => (

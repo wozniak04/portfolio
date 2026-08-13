@@ -1,9 +1,17 @@
+import { useLanguage } from '../context/LanguageContext';
+import { TRANSLATIONS } from '../data/translations';
+
 export function Footer() {
+  const { language } = useLanguage();
+  const t = TRANSLATIONS[language].footer;
+
   return (
     <footer className="footer">
       <div className="footer-content">
-        <p>© {new Date().getFullYear()} wozniak04. Wszystkie prawa zastrzeżone.</p>
-        <p>Built with React 19, TypeScript, Vite & CSS Design System • Deployed on GitHub Pages</p>
+        <p>
+          © {new Date().getFullYear()} wozniak04. {t.rights}
+        </p>
+        <p>{t.tech}</p>
       </div>
     </footer>
   );

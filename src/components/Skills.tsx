@@ -1,7 +1,12 @@
 import { SKILL_GROUPS } from '../data/projects';
 import { Sparkles, Code2, Database, Cpu, Wrench } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+import { TRANSLATIONS } from '../data/translations';
 
 export function Skills() {
+  const { language } = useLanguage();
+  const t = TRANSLATIONS[language].skills;
+
   const getCategoryIcon = (category: string) => {
     switch (category) {
       case 'Frontend & UI':
@@ -19,12 +24,10 @@ export function Skills() {
     <section id="skills" className="section-container">
       <div className="section-title-wrapper">
         <span className="section-badge">
-          <Sparkles size={14} /> Stack Technologiczny
+          <Sparkles size={14} /> {t.badge}
         </span>
-        <h2 className="section-title">Umiejętności & Narzędzia</h2>
-        <p className="section-subtitle">
-          Technologie, z których korzystam do tworzenia nowoczesnych i wydajnych systemów.
-        </p>
+        <h2 className="section-title">{t.title}</h2>
+        <p className="section-subtitle">{t.subtitle}</p>
       </div>
 
       <div className="skills-grid">
