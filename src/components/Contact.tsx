@@ -41,7 +41,7 @@ export function Contact() {
           Accept: 'application/json',
         },
         body: JSON.stringify({
-          access_key: '6ff59b66-0eb0-4d4f-b64f-45e0fbdf1323', // Web3Forms Access Key
+          access_key: import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || '',
           name: formData.name,
           email: formData.email,
           message: formData.message,
@@ -115,7 +115,7 @@ export function Contact() {
             </a>
 
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/miko%C5%82aj-wo%C5%BAniak-03bba1281/"
               target="_blank"
               rel="noreferrer"
               className="contact-method-item"
