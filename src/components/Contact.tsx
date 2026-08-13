@@ -115,7 +115,7 @@ export function Contact() {
             </a>
 
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/miko%C5%82aj-wo%C5%BAniak-03bba1281/"
               target="_blank"
               rel="noreferrer"
               className="contact-method-item"
