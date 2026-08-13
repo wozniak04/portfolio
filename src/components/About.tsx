@@ -1,47 +1,39 @@
 import { User } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+import { TRANSLATIONS } from '../data/translations';
 
 export function About() {
+  const { language } = useLanguage();
+  const t = TRANSLATIONS[language].about;
+
   return (
     <section id="about" className="section-container">
       <div className="section-title-wrapper">
         <span className="section-badge">
           <User size={14} /> O mnie
         </span>
-        <h2 className="section-title">Inżynierskie podejście do tworzenia oprogramowania</h2>
-        <p className="section-subtitle">
-          Łączę świat aplikacji Full-Stack ze sztuczną inteligencją i analityką danych.
-        </p>
+        <h2 className="section-title">{t.title}</h2>
+        <p className="section-subtitle">{t.subtitle}</p>
       </div>
 
       <div className="about-grid">
         <div className="about-card">
-          <p className="about-text">
-            Jestem programistą pasjonującym się budowaniem skalowalnych systemów webowych oraz
-            eksperymentowaniem z uczeniem maszynowym. Moja praca opiera się na dostarczaniu
-            przemyślanych rozwiązań – od intuicyjnych interfejsów w React i TypeScript, po wydajną
-            architekturę backendową w Node.js, bazach relacyjnych (PostgreSQL) i brokerach
-            wiadomości (Redis, MQTT).
-          </p>
-          <p className="about-text">
-            Oprócz tworzenia tradycyjnych aplikacji webowych, aktywnie biorę udział w wyzwaniach
-            analitycznych i AI – m.in. zdobywając <strong>2. miejsce w konkursie Morze AI</strong>{' '}
-            za opracowanie algorytmów analizy i wykrywania manewrów oraz anomalii morskich z
-            sygnałów GPS AIS.
-          </p>
+          <p className="about-text">{t.text1}</p>
+          <p className="about-text">{t.text2}</p>
         </div>
 
         <div className="stats-grid">
           <div className="stat-item">
             <div className="stat-value">🏆 2.</div>
-            <div className="stat-label">Miejsce Morze AI</div>
+            <div className="stat-label">{t.stat1Label}</div>
           </div>
           <div className="stat-item">
             <div className="stat-value">10+</div>
-            <div className="stat-label">Projektów GitHub</div>
+            <div className="stat-label">{t.stat2Label}</div>
           </div>
           <div className="stat-item">
             <div className="stat-value">Full-Stack</div>
-            <div className="stat-label">React + Node + PyTorch</div>
+            <div className="stat-label">{t.stat3Label}</div>
           </div>
         </div>
       </div>

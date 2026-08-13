@@ -2,8 +2,13 @@ import { useState } from 'react';
 import { PROJECTS_DATA } from '../data/projects';
 import { ProjectCard } from './ProjectCard';
 import { FolderGit2, ChevronDown, ChevronUp } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+import { TRANSLATIONS } from '../data/translations';
 
 export function FeaturedProjects() {
+  const { language } = useLanguage();
+  const t = TRANSLATIONS[language].projects;
+
   const [showAll, setShowAll] = useState(false);
 
   const featuredProjects = PROJECTS_DATA.filter((p) => p.featured);
@@ -13,31 +18,25 @@ export function FeaturedProjects() {
     <section id="projects" className="section-container">
       <div className="section-title-wrapper">
         <span className="section-badge">
-          <FolderGit2 size={14} /> Portfolio & Osiągnięcia
+          <FolderGit2 size={14} /> {t.badge}
         </span>
-        <h2 className="section-title">Wyróżnione Projekty & Konkursy</h2>
-        <p className="section-subtitle">
-          Najważniejsze osiągnięcia inżynieryjne oraz aplikacje Full-Stack i projekty AI.
-        </p>
+        <h2 className="section-title">{t.title}</h2>
+        <p className="section-subtitle">{t.subtitle}</p>
       </div>
 
-      {/* Primary Featured Projects */}
       <div className="featured-projects-grid">
         {featuredProjects.map((project) => (
           <ProjectCard key={project.id} project={project} />
         ))}
       </div>
 
-      {/* Secondary Projects Collapsible Grid */}
       <div className="secondary-projects-wrapper">
         <button
           type="button"
           onClick={() => setShowAll((prev) => !prev)}
           className="toggle-projects-btn"
         >
-          <span>
-            {showAll ? 'Schowaj pozostałe projekty' : 'Zobacz wszystkie pozostałe projekty'}
-          </span>
+          <span>{showAll ? t.showLess : t.showMore}</span>
           {showAll ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
         </button>
 

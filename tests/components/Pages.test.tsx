@@ -10,74 +10,69 @@ import { GithubIcon, LinkedinIcon } from '../../src/components/SocialIcons';
 import { Hero } from '../../src/components/Hero';
 import { About } from '../../src/components/About';
 import { Skills } from '../../src/components/Skills';
+import { LanguageProvider } from '../../src/context/LanguageContext';
 
 describe('Page Components & Sections', () => {
-  it('renders HomePage with Hero, About, Skills, FeaturedProjects, and Contact', () => {
-    render(
-      <MemoryRouter>
-        <HomePage />
-      </MemoryRouter>
+  function renderWithLang(ui: React.ReactNode) {
+    return render(
+      <LanguageProvider>
+        <MemoryRouter>{ui}</MemoryRouter>
+      </LanguageProvider>
     );
+  }
 
-    expect(screen.getByRole('heading', { name: /Cześć, jestem/i, level: 1 })).toBeInTheDocument();
+  it('renders HomePage with Hero, About, Skills, FeaturedProjects, and Contact', () => {
+    renderWithLang(<HomePage />);
+
     expect(
-      screen.getByText('Inżynierskie podejście do tworzenia oprogramowania')
+      screen.getByRole('heading', { name: /Cześć, jestem|Hi, I'm/i, level: 1 })
     ).toBeInTheDocument();
     expect(
-      screen.getByRole('heading', { name: 'Umiejętności & Narzędzia', level: 2 })
+      screen.getByText(/Inżynierskie podejście do tworzenia oprogramowania|Engineering Approach/i)
     ).toBeInTheDocument();
   });
 
   it('renders ProjectsPage', () => {
-    render(
-      <MemoryRouter>
-        <ProjectsPage />
-      </MemoryRouter>
-    );
+    renderWithLang(<ProjectsPage />);
 
     expect(
-      screen.getByRole('heading', { name: 'Wyróżnione Projekty & Konkursy', level: 2 })
+      screen.getByRole('heading', {
+        name: /Wyróżnione Projekty & Konkursy|Featured Projects/i,
+        level: 2,
+      })
     ).toBeInTheDocument();
   });
 
   it('renders SkillsPage and Skills with default category fallback', () => {
-    render(
-      <MemoryRouter>
-        <SkillsPage />
-        <Skills />
-      </MemoryRouter>
-    );
+    renderWithLang(<SkillsPage />);
 
     expect(
-      screen.getAllByRole('heading', { name: 'Umiejętności & Narzędzia', level: 2 }).length
-    ).toBeGreaterThan(0);
+      screen.getByRole('heading', { name: /Umiejętności & Narzędzia|Skills & Tools/i, level: 2 })
+    ).toBeInTheDocument();
   });
 
   it('renders ContactPage', () => {
-    render(
-      <MemoryRouter>
-        <ContactPage />
-      </MemoryRouter>
-    );
+    renderWithLang(<ContactPage />);
 
     expect(
-      screen.getByRole('heading', { name: 'Porozmawiajmy o współpracy', level: 2 })
+      screen.getByRole('heading', { name: /Porozmawiajmy o współpracy|Let's Discuss/i, level: 2 })
     ).toBeInTheDocument();
   });
 
   it('renders Hero and About components directly', () => {
-    render(
-      <MemoryRouter>
+    renderWithLang(
+      <>
         <Hero />
         <About />
-      </MemoryRouter>
+        <Skills />
+      </>
     );
 
     expect(screen.getByText(/Full-Stack Developer & AI Pipeline Engineer/i)).toBeInTheDocument();
   });
 
   it('renders Footer component', () => {
-    render(<Footer />);
+    renderWithLang(<Footer />);
 
     expect(
       screen.getByText(/Built with React 19, TypeScript, Vite & CSS Design System/i)

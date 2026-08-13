@@ -920,6 +920,7 @@ button {
   padding: 40px 24px;
   text-align: center;
   margin-top: 80px;
+  width: 100%;
 }
 
 .footer-content {
@@ -928,9 +929,88 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  justify-content: center;
+  text-align: center;
+  gap: 12px;
   font-size: 0.9rem;
   color: var(--text-dim);
+  width: 100%;
+}
+
+/* Caret / Text Selection Fix for Non-Interactive Elements */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.brand-logo,
+.section-badge,
+.stat-item,
+.skill-tag,
+.tech-pill,
+.btn-primary,
+.btn-secondary,
+.nav-link,
+.award-badge-tag,
+.category-badge {
+  user-select: none;
+  -webkit-user-select: none;
+  caret-color: transparent;
+}
+
+/* Language Switcher & Mobile Menu Drawer Styles */
+.lang-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: var(--transition-fast);
+}
+
+.lang-toggle-btn:hover {
+  background: rgba(56, 189, 248, 0.15);
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+}
+
+.hamburger-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  color: var(--text-main);
+  border-radius: var(--radius-sm);
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid var(--border-color);
+}
+
+.mobile-menu-drawer {
+  position: fixed;
+  top: var(--header-height);
+  left: 0;
+  right: 0;
+  background: rgba(9, 13, 22, 0.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-color);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  z-index: 999;
+}
+
+.mobile-menu-drawer .nav-link {
+  font-size: 1.1rem;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 /* Responsive Media Queries */
@@ -950,9 +1030,32 @@ button {
   }
 }
 
-@media (max-width: 640px) {
-  .nav-links {
-    display: none; /* Can be expanded with mobile menu drawer */
+@media (max-width: 768px) {
+  .nav-links-desktop {
+    display: none;
+  }
+
+  .hamburger-btn {
+    display: flex;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .contact-info-card {
+    text-align: center;
+  }
+
+  .contact-method-item {
+    justify-content: center;
+  }
+
+  .footer-content {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
   }
 
   .featured-projects-grid {

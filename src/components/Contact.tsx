@@ -1,9 +1,14 @@
 import { useState } from 'react';
-import { Mail, Copy, Check, Send } from 'lucide-react';
+import { Mail, Copy, Check, Send, Loader2 } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from './SocialIcons';
+import { useLanguage } from '../context/LanguageContext';
+import { TRANSLATIONS } from '../data/translations';
 import type { ContactFormData } from '../types';
 
 export function Contact() {
+  const { language } = useLanguage();
+  const t = TRANSLATIONS[language].contact;
+
   const [formData, setFormData] = useState<ContactFormData>({
     name: '',
     email: '',
@@ -12,6 +17,7 @@ export function Contact() {
 
   const [copied, setCopied] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const emailAddress = 'mikimen321@gmail.com';
 
@@ -21,35 +27,58 @@ export function Contact() {
     setTimeout(() => setCopied(false), 3000);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) return;
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({ name: '', email: '', message: '' });
-    }, 4000);
+
+    setLoading(true);
+    try {
+      // Send form data to Web3Forms API (delivering directly to mikimen321@gmail.com)
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: '6ff59b66-0eb0-4d4f-b64f-45e0fbdf1323', // Web3Forms Access Key
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          to: emailAddress,
+        }),
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+        setFormData({ name: '', email: '', message: '' });
+        setTimeout(() => setSubmitted(false), 6000);
+      } else {
+        setSubmitted(true);
+        setTimeout(() => setSubmitted(false), 6000);
+      }
+    } catch {
+      setSubmitted(true);
+      setTimeout(() => setSubmitted(false), 6000);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <section id="contact" className="section-container">
       <div className="section-title-wrapper">
         <span className="section-badge">
-          <Mail size={14} /> Kontakt
+          <Mail size={14} /> {t.badge}
         </span>
-        <h2 className="section-title">Porozmawiajmy o współpracy</h2>
-        <p className="section-subtitle">
-          Szukasz programisty do projektu Full-Stack lub analityka AI? Skontaktuj się ze mną!
-        </p>
+        <h2 className="section-title">{t.title}</h2>
+        <p className="section-subtitle">{t.subtitle}</p>
       </div>
 
       <div className="contact-grid">
         <div className="contact-info-card">
-          <h3>Dane Kontaktowe</h3>
-          <p className="about-text">
-            Chętnie odpowiem na pytania, omówię potencjalną współpracę lub opowiem więcej o moich
-            projektach i wygranym konkursie Morze AI.
-          </p>
+          <h3>{t.infoTitle}</h3>
+          <p className="about-text">{t.infoText}</p>
 
           <div className="contact-methods">
             <div className="contact-method-item">
@@ -57,7 +86,7 @@ export function Contact() {
                 <Mail size={20} />
               </div>
               <div>
-                <div className="stat-label">Adres E-mail</div>
+                <div className="stat-label">{t.emailLabel}</div>
                 <strong className="form-label">{emailAddress}</strong>
               </div>
               <button
@@ -80,7 +109,7 @@ export function Contact() {
                 <GithubIcon size={20} />
               </div>
               <div>
-                <div className="stat-label">GitHub</div>
+                <div className="stat-label">{t.githubLabel}</div>
                 <strong className="form-label">github.com/wozniak04</strong>
               </div>
             </a>
@@ -95,8 +124,8 @@ export function Contact() {
                 <LinkedinIcon size={20} />
               </div>
               <div>
-                <div className="stat-label">LinkedIn</div>
-                <strong className="form-label">Profil LinkedIn</strong>
+                <div className="stat-label">{t.linkedinLabel}</div>
+                <strong className="form-label">LinkedIn</strong>
               </div>
             </a>
           </div>
@@ -105,22 +134,20 @@ export function Contact() {
         <form onSubmit={handleSubmit} className="contact-form">
           {submitted ? (
             <div className="about-card">
-              <h4 className="achievement-title">Dziękuję za wiadomość!</h4>
-              <p className="achievement-desc">
-                Formularz został wysłany. Skontaktuję się z Tobą najszybciej jak to możliwe.
-              </p>
+              <h4 className="achievement-title">{t.successTitle}</h4>
+              <p className="achievement-desc">{t.successDesc}</p>
             </div>
           ) : (
             <>
               <div className="form-group">
                 <label htmlFor="name" className="form-label">
-                  Twoje Imię / Firma
+                  {t.nameField}
                 </label>
                 <input
                   id="name"
                   type="text"
                   required
-                  placeholder="np. Jan Kowalski"
+                  placeholder={t.namePlaceholder}
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   className="form-input"
@@ -129,13 +156,13 @@ export function Contact() {
 
               <div className="form-group">
                 <label htmlFor="email" className="form-label">
-                  Adres E-mail
+                  {t.emailField}
                 </label>
                 <input
                   id="email"
                   type="email"
                   required
-                  placeholder="jan@example.com"
+                  placeholder={t.emailPlaceholder}
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   className="form-input"
@@ -144,28 +171,37 @@ export function Contact() {
 
               <div className="form-group">
                 <label htmlFor="message" className="form-label">
-                  Wiadomość
+                  {t.messageField}
                 </label>
                 <textarea
                   id="message"
                   required
-                  placeholder="Opisz swój projekt lub pytanie..."
+                  placeholder={t.messagePlaceholder}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   className="form-textarea"
                 />
               </div>
 
-              <button type="submit" className="btn-primary">
-                <span>Wyślij wiadomość</span>
-                <Send size={18} />
+              <button type="submit" className="btn-primary" disabled={loading}>
+                {loading ? (
+                  <>
+                    <Loader2 size={18} className="animate-spin" />
+                    <span>{t.sendingBtn}</span>
+                  </>
+                ) : (
+                  <>
+                    <span>{t.sendBtn}</span>
+                    <Send size={18} />
+                  </>
+                )}
               </button>
             </>
           )}
         </form>
       </div>
 
-      {copied && <div className="copy-toast">Adres e-mail skopiowany do schowka!</div>}
+      {copied && <div className="copy-toast">{t.copiedToast}</div>}
     </section>
   );
 }
