@@ -1,6 +1,6 @@
 import type { Project, SkillGroup } from '../types';
 
-export const PROJECTS_DATA: Project[] = [
+export const PROJECTS_DATA_PL: Project[] = [
   {
     id: 'e-learning-platform',
     title: 'E-Learning Platform',
@@ -12,7 +12,6 @@ export const PROJECTS_DATA: Project[] = [
     featured: true,
     awardBadge: 'Wyróżniony Projekt Full-Stack',
     githubUrl: 'https://github.com/wozniak04/e-learning-platform',
-    liveUrl: 'https://e-learning-platform.example.com',
     techStack: [
       'React 19',
       'TypeScript',
@@ -149,7 +148,161 @@ export const PROJECTS_DATA: Project[] = [
   },
 ];
 
-export const SKILL_GROUPS: SkillGroup[] = [
+export const PROJECTS_DATA_EN: Project[] = [
+  {
+    id: 'e-learning-platform',
+    title: 'E-Learning Platform',
+    shortDescription:
+      'A modern, microservice educational platform for online courses with real-time chat and Docker containers.',
+    fullDescription:
+      'Comprehensive e-learning platform built on containerized architecture (Docker Compose). Enables creating, editing, and publishing courses, an interactive learning module with Markdown lessons, and a bilingual (PL/EN) interface. Features a dedicated real-time chat powered by Socket.io communication and an MQTT message broker (Eclipse Mosquitto). Security is ensured via a session system with CSRF token protection and integrated Google OAuth 2.0 authentication.',
+    category: 'Full-Stack',
+    featured: true,
+    awardBadge: 'Featured Full-Stack Project',
+    githubUrl: 'https://github.com/wozniak04/e-learning-platform',
+    techStack: [
+      'React 19',
+      'TypeScript',
+      'Vite',
+      'Zustand',
+      'Node.js',
+      'Express',
+      'PostgreSQL 17',
+      'Redis',
+      'MQTT (Mosquitto)',
+      'Socket.io',
+      'Docker Compose',
+      'Nginx',
+      'Cloudinary',
+      'Google OAuth 2.0',
+    ],
+    features: [
+      'Course management: creation, editing, publishing, and deleting educational content.',
+      'Learning module supporting Markdown lessons with live interactive preview.',
+      'Dedicated real-time chat room for participants of each course using Socket.io & MQTT.',
+      'Granular role permissions: separation between creator (editor) and student (read-only) accounts.',
+      'Multilingual support (i18next): built-in support for Polish and English languages.',
+      'Secure session authentication protected with CSRF tokens and Google Auth integration.',
+      'Cloud hosting for course cover images and media serving using Cloudinary.',
+    ],
+    architectureOverview:
+      'Nginx server acts as a Reverse Proxy routing requests to the React container (frontend) and Node.js Express (backend). PostgreSQL 17 database stores relational course and user data, Redis manages in-memory cache and sessions, and Eclipse Mosquitto (MQTT) handles fast asynchronous notifications and live chat message transmission.',
+    highlights: [
+      '100% containerized development and production environment (Docker Compose)',
+      'Advanced CSRF security mechanisms + Google OAuth 2.0',
+      'Scalable MQTT message broker coupled with Socket.io chat stack',
+    ],
+    metrics: [
+      { label: 'Architecture', value: 'Docker Compose' },
+      { label: 'Database', value: 'PostgreSQL + Redis' },
+      { label: 'Language Support', value: 'Polish / English' },
+    ],
+    date: '2025 - 2026',
+  },
+  {
+    id: 'marine-recognition',
+    title: 'Marine Recognition & AIS Anomaly Pipeline',
+    shortDescription:
+      'PyTorch machine learning model and GPS AIS data pipeline for automated ship maneuver classification and maritime anomaly detection.',
+    fullDescription:
+      'Awarded 2nd Place in the nationwide Morze AI competition. The core purpose of the system is continuous analytics on streaming and historical signals from AIS (Automatic Identification System) navigation transponders. The developed pipeline calculates geographic coordinates, speed, and vessel heading, while a PyTorch neural network model classifies ship maneuvers over time and identifies unusual trajectories (outliers / maritime anomalies).',
+    category: 'AI / Machine Learning',
+    featured: true,
+    awardBadge: '🏆 2nd Place in Morze AI Competition',
+    githubUrl: 'https://github.com/wozniak04/marine_recognition',
+    techStack: [
+      'Python',
+      'PyTorch',
+      'Data Analytics',
+      'AIS GPS Signals',
+      'Folium / Maps',
+      'NumPy',
+      'Pandas',
+      'UV Package Manager',
+    ],
+    features: [
+      'Automated data preprocessing, cleaning, and filtering of raw GPS AIS signal records.',
+      'Detection and classification of ship maneuvers (turns, speed drops, harbor maneuvers) using PyTorch neural networks.',
+      'Real-time algorithm for identifying spatial outliers and potentially dangerous voyage trajectories.',
+      'Visualization of vessel tracks and anomaly overlays on interactive navigation maps (Folium/Mapbox).',
+      'Efficient, memory-optimized data pipeline operating on `ship_model.pth` neural weight checkpoints.',
+    ],
+    architectureOverview:
+      'The data pipeline ingests raw AIS data, performs spatio-temporal feature engineering (coordinates, speed delta, heading angle variations), and feeds them into a tuned PyTorch model. Model inference predictions along with geographic positions are mapped onto spatial charts.',
+    highlights: [
+      'Awarded 2nd Place in the prestigious Morze AI analytics competition',
+      'Custom spatio-temporal feature extraction algorithms for AIS messages',
+      'PyTorch neural model engineered for real-time inference',
+    ],
+    metrics: [
+      { label: 'Achievement', value: '🏆 2nd Place Morze AI' },
+      { label: 'ML Framework', value: 'PyTorch' },
+      { label: 'Input Data', value: 'GPS AIS Trajectories' },
+    ],
+    date: '2026',
+  },
+  {
+    id: 'konfigurator-komputera',
+    title: 'AI PC Configurator',
+    shortDescription:
+      'Intelligent custom PC builder powered by artificial intelligence algorithms.',
+    fullDescription:
+      'Web application assisting users in selecting optimal computer components based on budget, primary use-case (gaming, video editing, ML), featuring automatic socket compatibility checks, PSU wattage calculations, and case clearance verification.',
+    category: 'Web App',
+    featured: false,
+    githubUrl: 'https://github.com/wozniak04/konfigurator-komputera',
+    techStack: ['TypeScript', 'React', 'Node.js', 'AI API'],
+    features: [
+      'Automated PC part pick recommendations tailored to user budget.',
+      'Socket compatibility checks for CPU, RAM types, and PSU power consumption.',
+      'AI-assisted hardware recommendations and bottleneck prevention.',
+    ],
+    date: '2023',
+  },
+  {
+    id: 'metroloty',
+    title: 'Metroloty Landing Page',
+    shortDescription:
+      'Promotional website for an innovative urban transit technology designed for petition signatures and public support.',
+    fullDescription:
+      'Modern promotional landing page created to market an innovative metropolitan transport concept, collect petition signatures, and engage the local community.',
+    category: 'Web App',
+    featured: false,
+    githubUrl: 'https://github.com/wozniak04/metroloty',
+    techStack: ['JavaScript', 'HTML5', 'CSS3', 'Responsive Design'],
+    features: [
+      'Interactive presentation of metropolitan transit concept key points.',
+      'Signature collection and public support system.',
+      'Mobile-first responsive visual layout.',
+    ],
+    date: '2023',
+  },
+  {
+    id: 'scrapping-olx',
+    title: 'OLX iPhone Offer Scraper',
+    shortDescription:
+      'Automated Web Scraper script monitoring and alerting on smartphone price deals.',
+    fullDescription:
+      'Python automation tool parsing classified listings for below-market deals with automatic filtering of fake or damaged item descriptions.',
+    category: 'Data / Tools',
+    featured: false,
+    githubUrl: 'https://github.com/wozniak04/Scrappingolx',
+    techStack: ['Python', 'BeautifulSoup', 'Scrapy', 'Automation'],
+    features: [
+      'Periodic automated listing scraping and threshold evaluation.',
+      'Price threshold filtering and text sentiment analysis for damaged items.',
+    ],
+    date: '2024',
+  },
+];
+
+export function getProjects(language: 'pl' | 'en'): Project[] {
+  return language === 'en' ? PROJECTS_DATA_EN : PROJECTS_DATA_PL;
+}
+
+export const PROJECTS_DATA: Project[] = PROJECTS_DATA_PL;
+
+export const SKILL_GROUPS_PL: SkillGroup[] = [
   {
     category: 'Frontend & UI',
     skills: [
@@ -195,3 +348,56 @@ export const SKILL_GROUPS: SkillGroup[] = [
     ],
   },
 ];
+
+export const SKILL_GROUPS_EN: SkillGroup[] = [
+  {
+    category: 'Frontend & UI',
+    skills: [
+      { name: 'React 19', level: 'Advanced' },
+      { name: 'TypeScript', level: 'Advanced' },
+      { name: 'JavaScript (ES6+)', level: 'Advanced' },
+      { name: 'HTML5 & CSS3 / SCSS', level: 'Advanced' },
+      { name: 'Vite & Webpack', level: 'Intermediate' },
+      { name: 'Zustand & Redux', level: 'Advanced' },
+      { name: 'Responsive Web Design', level: 'Advanced' },
+    ],
+  },
+  {
+    category: 'Backend & Databases',
+    skills: [
+      { name: 'Node.js & Express', level: 'Advanced' },
+      { name: 'PostgreSQL', level: 'Advanced' },
+      { name: 'Redis Cache', level: 'Intermediate' },
+      { name: 'REST APIs & GraphQL', level: 'Advanced' },
+      { name: 'MQTT & Socket.io', level: 'Intermediate' },
+      { name: 'C# / .NET', level: 'Intermediate' },
+      { name: 'PHP', level: 'Basic' },
+    ],
+  },
+  {
+    category: 'AI & Data Engineering',
+    skills: [
+      { name: 'Python', level: 'Advanced' },
+      { name: 'PyTorch', level: 'Intermediate' },
+      { name: 'Data Pipeline Analytics', level: 'Advanced' },
+      { name: 'Pandas & NumPy', level: 'Advanced' },
+      { name: 'Jupyter & ML Modeling', level: 'Intermediate' },
+    ],
+  },
+  {
+    category: 'DevOps & Tools',
+    skills: [
+      { name: 'Git & GitHub Actions', level: 'Advanced' },
+      { name: 'Docker & Docker Compose', level: 'Advanced' },
+      { name: 'Nginx Reverse Proxy', level: 'Intermediate' },
+      { name: 'Vitest & Testing Library', level: 'Intermediate' },
+      { name: 'Linux / Bash', level: 'Intermediate' },
+    ],
+  },
+];
+
+export function getSkillGroups(language: 'pl' | 'en'): SkillGroup[] {
+  return language === 'en' ? SKILL_GROUPS_EN : SKILL_GROUPS_PL;
+}
+
+export const SKILL_GROUPS: SkillGroup[] = SKILL_GROUPS_PL;

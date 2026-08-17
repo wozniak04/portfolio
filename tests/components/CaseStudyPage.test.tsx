@@ -20,7 +20,9 @@ describe('CaseStudyPage Component', () => {
     expect(
       screen.getByRole('heading', { name: 'E-Learning Platform', level: 1 })
     ).toBeInTheDocument();
-    expect(screen.getByText(/Kompleksowa platforma e-learningowa/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/Kompleksowa platforma e-learningowa|Comprehensive e-learning platform/i)
+    ).toBeInTheDocument();
   });
 
   it('renders case study for project with liveUrl if present', () => {
