@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { PROJECTS_DATA } from '../data/projects';
+import { getProjects } from '../data/projects';
 import { ProjectCard } from './ProjectCard';
 import { FolderGit2, ChevronDown, ChevronUp } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
@@ -11,8 +11,9 @@ export function FeaturedProjects() {
 
   const [showAll, setShowAll] = useState(false);
 
-  const featuredProjects = PROJECTS_DATA.filter((p) => p.featured);
-  const secondaryProjects = PROJECTS_DATA.filter((p) => !p.featured);
+  const projects = getProjects(language);
+  const featuredProjects = projects.filter((p) => p.featured);
+  const secondaryProjects = projects.filter((p) => !p.featured);
 
   return (
     <section id="projects" className="section-container">

@@ -1,5 +1,5 @@
 import { useParams, Link } from 'react-router-dom';
-import { PROJECTS_DATA } from '../data/projects';
+import { getProjects } from '../data/projects';
 import { ArrowLeft, ExternalLink, CheckCircle2, Layers, Cpu, Award } from 'lucide-react';
 import { GithubIcon } from '../components/SocialIcons';
 import { useLanguage } from '../context/LanguageContext';
@@ -7,8 +7,8 @@ import { TRANSLATIONS } from '../data/translations';
 
 export function CaseStudyPage() {
   const { id } = useParams<{ id: string }>();
-  const project = PROJECTS_DATA.find((p) => p.id === id);
   const { language } = useLanguage();
+  const project = getProjects(language).find((p) => p.id === id);
   const t = TRANSLATIONS[language].caseStudy;
 
   if (!project) {
@@ -46,11 +46,23 @@ export function CaseStudyPage() {
               <GithubIcon size={18} />
               <span>{t.codeBtn}</span>
             </a>
-            {project.liveUrl && (
+            {project.liveUrl ? (
               <a href={project.liveUrl} target="_blank" rel="noreferrer" className="btn-secondary">
                 <ExternalLink size={18} />
                 <span>{t.demoBtn}</span>
               </a>
+            ) : (
+              <div
+                className="btn-secondary"
+                style={{
+                  opacity: 0.65,
+                  cursor: 'default',
+                  borderColor: 'rgba(255, 255, 255, 0.1)',
+                  pointerEvents: 'none',
+                }}
+              >
+                <span>{t.demoComingSoon}</span>
+              </div>
             )}
           </div>
         </div>

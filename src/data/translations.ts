@@ -63,6 +63,9 @@ export const TRANSLATIONS = {
       messagePlaceholder: 'Opisz swój projekt lub pytanie...',
       sendBtn: 'Wyślij wiadomość',
       sendingBtn: 'Wysyłanie...',
+      sendAnotherBtn: 'Wyślij kolejną wiadomość',
+      errorMsg:
+        'Nie udało się wysłać wiadomości. Upewnij się, że dane są poprawne lub skopiuj e-mail bezpośrednio.',
       successTitle: 'Dziękuję za wiadomość!',
       successDesc:
         'Wiadomość została wysłana bezpośrednio na mój e-mail. Skontaktuję się z Tobą najszybciej jak to możliwe.',
@@ -76,6 +79,7 @@ export const TRANSLATIONS = {
       backBtn: 'Powrót do projektów & osiągnięć',
       codeBtn: 'Kod na GitHub',
       demoBtn: 'Live Demo',
+      demoComingSoon: 'Live Demo: Wkrótce (In Progress)',
       archTitle: 'Architektura & Rozwiązanie Techniczne',
       featTitle: 'Główne Funkcjonalności & Możliwości',
       stackTitle: 'Zastosowany Stack Technologiczny',
@@ -148,6 +152,8 @@ export const TRANSLATIONS = {
       messagePlaceholder: 'Describe your project or inquiry...',
       sendBtn: 'Send Message',
       sendingBtn: 'Sending...',
+      sendAnotherBtn: 'Send Another Message',
+      errorMsg: 'Failed to send message. Please ensure details are correct or copy email directly.',
       successTitle: 'Thank you for your message!',
       successDesc:
         'Your message has been sent directly to my email inbox. I will get back to you as soon as possible.',
@@ -161,6 +167,7 @@ export const TRANSLATIONS = {
       backBtn: 'Back to Projects & Achievements',
       codeBtn: 'Source Code on GitHub',
       demoBtn: 'Live Demo',
+      demoComingSoon: 'Live Demo: Coming Soon',
       archTitle: 'Architecture & Technical Solution',
       featTitle: 'Key Features & Capabilities',
       stackTitle: 'Technology Stack Used',

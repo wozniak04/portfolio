@@ -119,7 +119,7 @@ describe('Contact Component', () => {
     });
 
     expect(
-      screen.getByText(/Dziękuję za wiadomość!|Thank you for your message!/i)
+      screen.getByText(/Nie udało się wysłać wiadomości|Failed to send message/i)
     ).toBeInTheDocument();
   });
 
@@ -142,7 +142,7 @@ describe('Contact Component', () => {
     });
 
     expect(
-      screen.getByText(/Dziękuję za wiadomość!|Thank you for your message!/i)
+      screen.getByText(/Nie udało się wysłać wiadomości|Failed to send message/i)
     ).toBeInTheDocument();
   });
 

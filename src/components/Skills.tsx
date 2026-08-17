@@ -1,4 +1,4 @@
-import { SKILL_GROUPS } from '../data/projects';
+import { getSkillGroups } from '../data/projects';
 import { Sparkles, Code2, Database, Cpu, Wrench } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { TRANSLATIONS } from '../data/translations';
@@ -6,6 +6,7 @@ import { TRANSLATIONS } from '../data/translations';
 export function Skills() {
   const { language } = useLanguage();
   const t = TRANSLATIONS[language].skills;
+  const skillGroups = getSkillGroups(language);
 
   const getCategoryIcon = (category: string) => {
     switch (category) {
@@ -31,7 +32,7 @@ export function Skills() {
       </div>
 
       <div className="skills-grid">
-        {SKILL_GROUPS.map((group) => (
+        {skillGroups.map((group) => (
           <div key={group.category} className="skill-category-card">
             <div className="category-header">
               {getCategoryIcon(group.category)}

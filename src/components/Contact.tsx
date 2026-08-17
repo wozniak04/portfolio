@@ -18,6 +18,7 @@ export function Contact() {
   const [copied, setCopied] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const emailAddress = 'mikimen321@gmail.com';
 
@@ -29,7 +30,16 @@ export function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name || !formData.email || !formData.message) return;
+    setErrorMessage('');
+
+    const trimmedName = formData.name.trim();
+    const trimmedEmail = formData.email.trim();
+    const trimmedMessage = formData.message.trim();
+
+    if (!trimmedName || !trimmedEmail || !trimmedMessage) {
+      setErrorMessage(t.errorMsg);
+      return;
+    }
 
     setLoading(true);
     try {
@@ -42,9 +52,9 @@ export function Contact() {
         },
         body: JSON.stringify({
           access_key: import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || '',
-          name: formData.name,
-          email: formData.email,
-          message: formData.message,
+          name: trimmedName,
+          email: trimmedEmail,
+          message: trimmedMessage,
           to: emailAddress,
         }),
       });
@@ -52,14 +62,11 @@ export function Contact() {
       if (response.ok) {
         setSubmitted(true);
         setFormData({ name: '', email: '', message: '' });
-        setTimeout(() => setSubmitted(false), 6000);
       } else {
-        setSubmitted(true);
-        setTimeout(() => setSubmitted(false), 6000);
+        setErrorMessage(t.errorMsg);
       }
     } catch {
-      setSubmitted(true);
-      setTimeout(() => setSubmitted(false), 6000);
+      setErrorMessage(t.errorMsg);
     } finally {
       setLoading(false);
     }
@@ -133,12 +140,39 @@ export function Contact() {
 
         <form onSubmit={handleSubmit} className="contact-form">
           {submitted ? (
-            <div className="about-card">
+            <div className="about-card" style={{ textAlign: 'center' }}>
               <h4 className="achievement-title">{t.successTitle}</h4>
-              <p className="achievement-desc">{t.successDesc}</p>
+              <p className="achievement-desc" style={{ marginBottom: '1.5rem' }}>
+                {t.successDesc}
+              </p>
+              <button
+                type="button"
+                onClick={() => setSubmitted(false)}
+                className="btn-primary"
+                style={{ margin: '0 auto' }}
+              >
+                <span>{t.sendAnotherBtn}</span>
+              </button>
             </div>
           ) : (
             <>
+              {errorMessage && (
+                <div
+                  className="error-banner"
+                  style={{
+                    backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                    border: '1px solid rgba(239, 68, 68, 0.3)',
+                    color: '#f87171',
+                    padding: '0.75rem 1rem',
+                    borderRadius: '8px',
+                    fontSize: '0.9rem',
+                    marginBottom: '1rem',
+                  }}
+                >
+                  {errorMessage}
+                </div>
+              )}
+
               <div className="form-group">
                 <label htmlFor="name" className="form-label">
                   {t.nameField}
