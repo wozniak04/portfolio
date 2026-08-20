@@ -2,6 +2,52 @@ import type { Project, SkillGroup } from '../types';
 
 export const PROJECTS_DATA_PL: Project[] = [
   {
+    id: 'ai-referral-prediction',
+    title: 'Predicting AI Referral Opportunities in LLMs (RAG Optimization)',
+    shortDescription:
+      'Model uczenia maszynowego (Random Forest) oraz pipeline badawczy (30 000 podstron, GroupKFold po client_id) przewidujący cytowania RAG i ruch od asystentów AI (ChatGPT, Perplexity, Claude).',
+    fullDescription:
+      'Kompleksowe badanie naukowe oraz model uczenia maszynowego dedykowany dla strategów SEO i zespołów redakcyjnych. System analizuje 30 000 anonimizowanych podstron z panelu ponad 79 mln wierszy danych produkcyjnych FlyRank Benchmark, aby precyzyjnie przewidywać szanse na zdobycie cytowań RAG i ruchu od asystentów AI (ChatGPT, Perplexity, Claude). Zastosowanie uczciwego podziału walidacyjnego GroupKFold wyeliminowało 20% lukę zapamiętywania domen i pozwoliło osiągnąć Precision@50 równy 68.00% (2.12× wyższy od bazowych reguł).',
+    category: 'AI / Machine Learning',
+    featured: true,
+    awardBadge: '📄 Artykuł Naukowo-Badawczy (Data Science)',
+    githubUrl: 'https://github.com/wozniak04/ml-starter',
+    paperUrl: '/projects/ai-referral-prediction/paper',
+    techStack: [
+      'Python',
+      'scikit-learn',
+      'PyTorch',
+      'Random Forest',
+      'GroupKFold',
+      'Pandas',
+      'NumPy',
+      'Data Pipelines',
+    ],
+    features: [
+      'Analiza 30 000 aktywnych podstron z panelu ponad 79 mln rekordów analitycznych FlyRank.',
+      'Model klasyfikujący Random Forest (100 estymatorów, max_depth=6) operujący na cechach organicznych i strukturalnych.',
+      'Rzetelna walidacja 5-Fold GroupKFold po client_id chroniąca przed przeciekiem danych (Data Leakage) i zapamiętywaniem domen.',
+      'Osiągnięta precyzja Precision@50 = 68.00% (w porównaniu do 32.00% dla reguł eksperckich i 6.43% dla wyboru losowego).',
+      'Kwantyfikacja luki zapamiętywania (Memorization Gap = 20.00%) wykazująca przeszacowanie wyników w tradycyjnym podziale losowym.',
+      'Analiza ważności cech: wyświetlenia organiczne (33.95%) oraz długość tekstu (31.11%) jako kluczowe predyktory cytowań RAG.',
+      'Praktyczny system kodów przyczyn (Content Action Playbook) do priorytetyzacji pracy redaktorów z zasadami No-Go Automations.',
+    ],
+    architectureOverview:
+      'Data pipeline przyjmuje surowe metryki widoczności organicznej i parametrów artykułów, filtruje wskaźniki pochodne targetu (zapobieganie przeciekowi etykiet), a następnie buduje macierz cech. Uczciwy podział 5-Fold GroupKFold po client_id zapewnia, że domeny klienta występujące w zbiorze walidacyjnym nigdy nie były widziane podczas uczenia. Wyselekcjonowany klasyfikator Random Forest generuje prawdopodobieństwa, które są przekształcane w oceny rangowe oraz kody przyczyn dla zespołu edytorskiego.',
+    highlights: [
+      'Ponad 2.1x wyższa precyzja (68.00% vs 32.00%) w porównaniu do standardowych reguł branżowych',
+      'Dowód naukowy na obecność 20% luki zapamiętywania w tradycyjnej walidacji K-Fold',
+      'Pełna powtarzalność badań (Reproducible Research Pipeline, notebooks & metric receipts)',
+    ],
+    metrics: [
+      { label: 'Precision@50', value: '68.00%' },
+      { label: 'Wzrost vs Reguły', value: '2.12×' },
+      { label: 'Memorization Gap', value: '20.00%' },
+      { label: 'Przebadanych Podstron', value: '30,000' },
+    ],
+    date: '2026',
+  },
+  {
     id: 'e-learning-platform',
     title: 'E-Learning Platform',
     shortDescription:
@@ -149,6 +195,52 @@ export const PROJECTS_DATA_PL: Project[] = [
 ];
 
 export const PROJECTS_DATA_EN: Project[] = [
+  {
+    id: 'ai-referral-prediction',
+    title: 'Predicting AI Referral Opportunities in LLMs (RAG Optimization)',
+    shortDescription:
+      'Machine learning ranking model (Random Forest) and data pipeline (30k pages, GroupKFold by client_id) predicting RAG citations and referral traffic from AI search assistants (ChatGPT, Perplexity, Claude).',
+    fullDescription:
+      'Comprehensive scientific research study and machine learning model designed for SEO strategists and editorial teams. The system evaluates 30,000 anonymized content items across a panel of 79M+ production data rows (FlyRank Benchmark Panel) to predict Retrieval-Augmented Generation (RAG) citations and referral opportunities from AI search assistants (ChatGPT, Perplexity, Claude). Using an honest GroupKFold cross-validation split by client_id eliminated a 20% domain memorization gap, achieving an out-of-fold Precision@50 of 68.00% (a 2.12x gain over baseline heuristics).',
+    category: 'AI / Machine Learning',
+    featured: true,
+    awardBadge: '📄 Data Science Research Paper',
+    githubUrl: 'https://github.com/wozniak04/ml-starter',
+    paperUrl: '/projects/ai-referral-prediction/paper',
+    techStack: [
+      'Python',
+      'scikit-learn',
+      'PyTorch',
+      'Random Forest',
+      'GroupKFold',
+      'Pandas',
+      'NumPy',
+      'Data Pipelines',
+    ],
+    features: [
+      'Evaluated 30,000 active content items from a 79M+ record production analytics panel.',
+      'Random Forest ranking classifier (100 estimators, max depth of 6) trained on search and structural attributes.',
+      'Honest 5-fold GroupKFold validation split by client_id preventing entity data leakage and domain memorization.',
+      'Out-of-fold Precision@50 of 68.00% (vs 32.00% baseline heuristic rule and 6.43% random baseline rate).',
+      'Quantified a 20.00% Memorization Gap demonstrating traditional random split overfitting on domain authority.',
+      'Feature importance analysis identifying Organic Impressions (33.95%) and Word Count (31.11%) as primary RAG drivers.',
+      'Operational Content Action Playbook mapping model probabilities to reason codes with No-Go Automations guardrails.',
+    ],
+    architectureOverview:
+      'The data pipeline ingests raw organic search metrics and structural content attributes, strictly excluding target-derived columns to prevent label leakage. An honest 5-Fold GroupKFold split grouped by client_id guarantees that client domains in validation folds are never seen during model training. The tuned Random Forest classifier computes out-of-fold probability scores, which are translated into relative opportunity ranks and human-actionable reason codes.',
+    highlights: [
+      '2.12x precision gain (68.00% vs 32.00%) over industry rule-based heuristics',
+      'Empirical proof of a 20.00% domain memorization gap in standard K-Fold splitting',
+      '100% reproducible research pipeline with version-controlled notebooks and metric receipts',
+    ],
+    metrics: [
+      { label: 'Precision@50', value: '68.00%' },
+      { label: 'Lift vs Baseline', value: '2.12×' },
+      { label: 'Memorization Gap', value: '20.00%' },
+      { label: 'Evaluated Items', value: '30,000' },
+    ],
+    date: '2026',
+  },
   {
     id: 'e-learning-platform',
     title: 'E-Learning Platform',
