@@ -39,4 +39,8 @@ vi.mock('lucide-react', () => ({
   X: makeIcon('X'),
   Globe: makeIcon('Globe'),
   Loader2: makeIcon('Loader2'),
+  FileText: makeIcon('FileText'),
+  BookOpen: makeIcon('BookOpen'),
+  ShieldCheck: makeIcon('ShieldCheck'),
+  AlertTriangle: makeIcon('AlertTriangle'),
 }));

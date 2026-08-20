@@ -1,6 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import { getProjects } from '../data/projects';
-import { ArrowLeft, ExternalLink, CheckCircle2, Layers, Cpu, Award } from 'lucide-react';
+import { ArrowLeft, ExternalLink, CheckCircle2, Layers, Cpu, Award, BookOpen } from 'lucide-react';
 import { GithubIcon } from '../components/SocialIcons';
 import { useLanguage } from '../context/LanguageContext';
 import { TRANSLATIONS } from '../data/translations';
@@ -46,7 +46,12 @@ export function CaseStudyPage() {
               <GithubIcon size={18} />
               <span>{t.codeBtn}</span>
             </a>
-            {project.liveUrl ? (
+            {project.paperUrl ? (
+              <Link to={project.paperUrl} className="btn-secondary">
+                <BookOpen size={18} />
+                <span>{t.paperBtn}</span>
+              </Link>
+            ) : project.liveUrl ? (
               <a href={project.liveUrl} target="_blank" rel="noreferrer" className="btn-secondary">
                 <ExternalLink size={18} />
                 <span>{t.demoBtn}</span>

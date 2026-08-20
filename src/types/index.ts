@@ -8,6 +8,7 @@ export interface Project {
   awardBadge?: string;
   githubUrl: string;
   liveUrl?: string;
+  paperUrl?: string;
   techStack: string[];
   features: string[];
   architectureOverview?: string;
