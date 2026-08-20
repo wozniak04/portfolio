@@ -506,9 +506,35 @@ export function ResearchPaperPage() {
           {isEn ? '8. Acknowledgments & Data Credit' : '8. Podziękowania & Podstawa Danych'}
         </h2>
         <p className="about-text">
-          {isEn
-            ? 'Built on the FlyRank ML Internship dataset. We gratefully acknowledge FlyRank for providing access to anonymized production search analytics and LLM referral panel data.'
-            : 'Badanie zrealizowane na bazie zbioru danych FlyRank ML Internship dataset. Składamy podziękowania dla zespołu FlyRank za udostępnienie anonimizowanych danych produkcyjnych z panelu analitycznego wyszukiwań i skierowań AI.'}
+          {isEn ? (
+            <>
+              Built on the{' '}
+              <a
+                href="https://flyrank.ai"
+                target="_blank"
+                rel="noreferrer"
+                style={{ color: 'var(--accent-cyan)', textDecoration: 'underline' }}
+              >
+                FlyRank ML Internship dataset
+              </a>
+              . We gratefully acknowledge FlyRank for providing access to anonymized production
+              search analytics and LLM referral panel data.
+            </>
+          ) : (
+            <>
+              Badanie zrealizowane w oparciu o zbiór danych{' '}
+              <a
+                href="https://flyrank.ai"
+                target="_blank"
+                rel="noreferrer"
+                style={{ color: 'var(--accent-cyan)', textDecoration: 'underline' }}
+              >
+                FlyRank ML Internship dataset
+              </a>
+              . Składamy podziękowania dla zespołu FlyRank za udostępnienie anonimizowanych danych
+              produkcyjnych z panelu analitycznego wyszukiwań i skierowań AI.
+            </>
+          )}
         </p>
       </section>
     </div>
