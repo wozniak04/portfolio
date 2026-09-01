@@ -1,34 +1,75 @@
-# React + TypeScript + Vite
+# Personal Portfolio & Engineering Showcase 🚀
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Welcome to my developer portfolio! This site showcases my work bridging **Full-Stack Web Development** (React 19, TypeScript, Node.js) with **Artificial Intelligence & Data Analytics** (PyTorch, Machine Learning Pipelines).
 
-Currently, two official plugins are available:
+🔗 **Live Site**: [wozniak04.github.io/portfolio](https://wozniak04.github.io/portfolio/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## 💡 Highlighted Projects & Research
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+- **📄 Predicting AI Referral Opportunities in LLMs (RAG Optimization)**
+  - _Data Science / ML Research Paper_ analyzing 30,000 active subpages across 79M+ production analytics records.
+  - Achieved an out-of-fold `Precision@50` of **68.00%** using Random Forest and `GroupKFold` cross-validation (a 2.12× lift over baseline rules).
+- **🏆 Marine Recognition & AIS Anomaly Pipeline**
+  - _Awarded 2nd Place in the nationwide Morze AI competition._
+  - PyTorch model & streaming data pipeline for classifying vessel maneuvers and detecting maritime trajectory anomalies from GPS AIS signals.
+- **🎓 Containerized E-Learning Platform**
+  - Full-stack education platform built with Docker Compose, featuring real-time Socket.io & MQTT chat rooms, PostgreSQL 17, and Redis.
 
-Note: This will impact Vite dev & build performances.
+---
 
-## Expanding the Oxlint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+- **Frontend**: React 19, TypeScript, Vite, Zustand, Lucide Icons, Glassmorphic Dark CSS
+- **Backend & AI**: Node.js, Express, PyTorch, scikit-learn, Pandas, NumPy, PostgreSQL 17, Redis, MQTT (Mosquitto)
+- **Tooling & Quality**: Vitest, React Testing Library, Oxlint, Prettier, Cloudflare Web Analytics
+- **Deployment**: GitHub Actions CI/CD → GitHub Pages
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+---
+
+## ⚡ Quick Start
+
+Clone the repository and run the local development server:
+
+```bash
+# 1. Clone repository
+git clone https://github.com/wozniak04/portfolio.git
+cd portfolio
+
+# 2. Install dependencies
+npm install
+
+# 3. Start development server
+npm run dev
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+Open `http://localhost:5173` in your browser.
+
+---
+
+## 🧪 Available Scripts
+
+- `npm run dev` — Launch Vite dev server with hot module replacement (HMR).
+- `npm run build` — Run TypeScript type-check (`tsc -b`) and build static production bundle.
+- `npm run preview` — Preview production build locally.
+- `npm test` — Execute Vitest unit and component test suite.
+
+---
+
+## 🌐 Key Features
+
+- **Bilingual (PL/EN)**: Instant language toggle across all pages, case studies, and paper documentation.
+- **Mobile-First & Performant**: Glassmorphism design system optimized for fast load times and Core Web Vitals.
+- **CI/CD Automated**: Automated build & deploy pipeline triggered on push to `main`.
+
+---
+
+## 📬 Contact & Links
+
+- **GitHub**: [@wozniak04](https://github.com/wozniak04)
+- **Email**: Direct contact via portfolio form or email
+
+---
+
+_Built with React 19, TypeScript, Vite & CSS Design System._
